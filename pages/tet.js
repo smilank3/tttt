@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Chart from "chart.js";
+import 'isomorphic-unfetch'
 
  const port=process.env.PORT|| 3000;
 

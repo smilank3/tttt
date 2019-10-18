@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "demon": "nodemon server/app.js -p $PORT --watch server",
-    "build":"next build",
-    "heroku-postbuild":"next build",
+    "build": "next build",
+    "heroku-postbuild": "next build",
     "start": "node server/app.js -p $PORT"
   },
   "author": "",
@@ -20,6 +20,7 @@
     "chart.js": "^2.8.0",
     "echarts": "^4.3.0",
     "express": "^4.17.1",
+    "isomorphic-unfetch": "^3.0.0",
     "next": "^9.1.1",
     "next-transpile-modules": "^2.3.1",
     "react": "^16.10.2",
