@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Chart from "chart.js";
 
- const port=process.env.PORT|| 3001;
+ const port=process.env.PORT|| 3000;
 
 const ROOT_URL=process.env.ROOT_URL || `http://localhost:${port}`;
 

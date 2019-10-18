@@ -10,7 +10,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow"
 
 import Line from './tet'
-const port=process.env.PORT|| 3001;
+const port=process.env.PORT|| 3000;
 
 const ROOT_URL=process.env.ROOT_URL || `http://localhost:${port}`;
 
@@ -173,7 +173,7 @@ console.log(ev.target.dataItem.dataContext)
 
 
 	render(){
-		return (<div id={this.props.chartId} className="graph" style={{width:'100%',height:'500px',border:''}}></div>)
+		return (<div id={this.props.chartId} className="graph" style={{width:'100%',height:'80vh',border:''}}></div>)
 	}
 }
 

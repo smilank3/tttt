@@ -148,6 +148,8 @@ return list;
 
   async me(f1,f2){
 
+    // faster then merged;
+
 var list=[];
     for(var i of f1){
       console.log(i.Entity)
@@ -241,6 +243,7 @@ return Nations.find(n=>(n.name.toLowerCase()===country.toLowerCase()));
 		//add longitude and latitued;
 
 var co= await this.me(_country,map_loc);
+console.log(co)
 
 
 
