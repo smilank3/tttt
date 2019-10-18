@@ -8,7 +8,8 @@
     "demon": "nodemon server/app.js -p $PORT --watch server",
     "build":"next build",
     "heroku-postbuild":"next build",
-     "start": "node server/app.js -p $PORT",
+    "start": "node server/app.js -p $PORT"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
