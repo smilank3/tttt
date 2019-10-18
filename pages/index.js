@@ -88,7 +88,7 @@ hover.properties.fill=this.chart.colors.getIndex(0)
 //rqusest data from server
 
 try{
-	var response=await fetch(`${ROOT_URL}/2019`,{method:'GET',credentials:'include'});
+	var response=await fetch(`${ROOT_URL}/2019`,{method:'GET',credentials:'include'},{'Content-type':'application/json; charset=UTF-8'});
 var datas=await response.json();
 
 console.log(datas)
@@ -102,19 +102,7 @@ console.log(datas)
 
 
 
-var mapData = [
-  
-  
-  { "Code":"US", "Entity":"United States", "Population":313085380, "color":'',"latitude":38, "longitude":-97 },
-  {"Entity":"Afghanistan","Code":"AFG","Year":"2019","Population":"38042000","capital":"Kabul","longitude":69.183333,"latitude":34.516666666666666,color:'red'},
-  {"Entity":"Africa","Code":"","Year":"2019","Population":"1308064000"},
-  {"Entity":"Albania","Code":"ALB","Year":"2019","Population":"2881000","capital":"Tirana","longitude":19.816667,"latitude":41.31666666666667,color:'blue'},
-  {"Entity":"Algeria","Code":"DZA","Year":"2019","Population":"43053000","capital":"Algiers","longitude":3.050000,"latitude":36.75,color:'yellow'},
-  {"Entity":"American Samoa","Code":"ASM","Year":"2019","Population":"55000","capital":"Pago Pago","longitude":-170.700000,"latitude":-14.266666666666667,color:'orange'},
-  {"Entity":"China","Code":"CHN","Year":"2019","Population":"1433784064","capital":"Beijing","longitude":116.383333,"latitude":39.916666666666664,color:'green'},
-  {"Entity":"Japan","Code":"JPN","Year":"2019","Population":"126860000","capital":"Tokyo","longitude":139.75,"latitude":35.68333333333333,"color":"#63ec24"},
 
-];
 
 // Add lat/long information to data
 /*

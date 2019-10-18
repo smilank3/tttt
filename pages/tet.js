@@ -23,7 +23,7 @@ export default class LineGraph extends Component {
 
 
        try{
-    var response=await fetch(`${ROOT_URL}/country/${this.props.countryName}`,{method:'GET',credentials:'include'});
+    var response=await fetch(`${ROOT_URL}/country/${this.props.countryName}`,{method:'GET',credentials:'include'},{'Content-type':'application/json; charset=UTF-8'});
  datas=await response.json();
 
 console.log(datas)
