@@ -13,7 +13,7 @@ const app=next({dev});
 
 const port=process.env.PORT||3000;
 
-const Root_Url=`http://localhost:${port}`;
+///const Root_Url=`http://localhost:${port}`;
 
 //var p=new Lib('world-population-by-world-regions-post-1820.csv','country-capitals.csv')
 
@@ -35,6 +35,13 @@ app.prepare().then(async()=>{
 
 	console.log(__dirname);
 	console.log(path.resolve(__dirname,"file"));
+
+
+
+	server.get('/',async(req,res)=>{
+
+		app.render(req,res,'/')
+	})
 
 	server.get("/test",(req,res)=>{
 

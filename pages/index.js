@@ -9,7 +9,7 @@ import * as am4maps from "@amcharts/amcharts4/maps"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow"
 
-import 'isomorphic-unfetch'
+import fetch from 'isomorphic-unfetch'
 
 import Line from './tet'
 const port=process.env.PORT|| 3000;
