@@ -1,0 +1,28 @@
+{
+  "name": "echartjs-pro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "demon": "nodemon server/app.js -p $PORT --watch server",
+    "build":"next build",
+    "heroku-postbuild":"next build",
+     "start": "node server/app.js -p $PORT",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@amcharts/amcharts4": "^4.6.9",
+    "@amcharts/amcharts4-geodata": "^4.1.7",
+    "@zeit/next-css": "^1.0.1",
+    "bootstrap": "^4.3.1",
+    "chart.js": "^2.8.0",
+    "echarts": "^4.3.0",
+    "express": "^4.17.1",
+    "next": "^9.1.1",
+    "next-transpile-modules": "^2.3.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "reactstrap": "^8.0.1"
+  }
+}
