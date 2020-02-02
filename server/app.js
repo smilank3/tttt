@@ -15,7 +15,7 @@ const port=process.env.PORT||3000;
 
 ///const Root_Url=`http://localhost:${port}`;
 
-//var p=new Lib('world-population-by-world-regions-post-1820.csv','country-capitals.csv')
+
 
 
 
