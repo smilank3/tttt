@@ -209,27 +209,24 @@ class Index extends React.Component{
 
 			<div style={{width:"80%",margin:'0 auto',marginTop:'100px'}}>
 				
-{/* Bar is the earth images.*/}
+
 
 <Bar chartId="test" callback={this.setS} isOpen={this.state.open}></Bar>
 
 
-{/*collection of Graph*/}
-
-
-
-{/*here is the graph of whole earth population by the timeline*/}
 
 
 
 
-{/*The graph of urban and rural population of specific country*/}
+
+
+
 <Auto callback={this.setCountryName}></Auto>
 
 <Grap countryName={this.state.countryName}></Grap>
 
 
-{/*This shows when click in the country bubble to show the population of that country*/}
+
 
 {this.state.open &&(<div  className="modal" id="exampleModal" tabIndex="-1" style={{position:'fixed',display:'block',
 
