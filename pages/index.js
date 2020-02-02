@@ -176,7 +176,7 @@ imageTemplate.events.on("hit",(ev)=>{
 
 class Index extends React.Component{
 
-	state={open:false,country:null, countryName:"United States"};// intial is Bangladesh
+	state={open:false,country:null, countryName:"United States"};// intial is United states
 	// here we have two country porp
 	// country is use for the earth map
 	// while countryName is use to get data for urban and rural population comparision
