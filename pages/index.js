@@ -9,9 +9,15 @@ import * as am4maps from "@amcharts/amcharts4/maps"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow"
 
+import Graph from './components/graph'
+
 import fetch from 'isomorphic-unfetch'
 
 import Line from './tet'
+
+import Grap from './urbanRural'
+
+import Auto from './components/Autocomplete'
 const port=process.env.PORT|| 3000;
 
 const ROOT_URL=process.env.ROOT_URL || `http://localhost:${port}`;
@@ -85,15 +91,15 @@ hover.properties.fill=this.chart.colors.getIndex(0)
 //onclick
 
 
-
+var datas;
 
 //rqusest data from server
 
 try{
 	var response=await fetch(`${ROOT_URL}/2019`,{method:'GET',credentials:'include'},{'Content-type':'application/json; charset=UTF-8'});
-var datas=await response.json();
+ datas=await response.json();
 
-console.log(datas)
+
 
 }catch(err){
 	alert(err);
@@ -140,7 +146,7 @@ imageSeries.heatRules.push({
 // click on circle
 
 imageTemplate.events.on("hit",(ev)=>{
-console.log(ev.target.dataItem.dataContext)
+//console.log(ev.target.dataItem.dataContext)
 
 	
 
@@ -170,11 +176,14 @@ console.log(ev.target.dataItem.dataContext)
 
 class Index extends React.Component{
 
-	state={open:false,country:null};
+	state={open:false,country:null, countryName:"United States"};// intial is Bangladesh
+	// here we have two country porp
+	// country is use for the earth map
+	// while countryName is use to get data for urban and rural population comparision
 
 
 	setS=(boj)=>{
-		console.log(boj)
+		
 
 
 
@@ -186,16 +195,42 @@ class Index extends React.Component{
 		this.setState({open:false})
 	}
 
+
+	// function to set countryName  used in Autocomplete; when clik suggestion
+	// on auto complete component . this function gets called ; it comes with the suggested countryname
+	// then we set to state and used to show grap in <Grap>
+
+	setCountryName=(countryname)=>{
+		this.setState({countryName:countryname})
+	}
+
 	render(){
 		return (
 
-			<div>
+			<div style={{width:"80%",margin:'0 auto',marginTop:'100px'}}>
 				
-
+{/* Bar is the earth images.*/}
 
 <Bar chartId="test" callback={this.setS} isOpen={this.state.open}></Bar>
 
- <button type="button" className="btn btn-primary">Save changes</button>
+
+{/*collection of Graph*/}
+
+
+
+{/*here is the graph of whole earth population by the timeline*/}
+
+
+
+
+{/*The graph of urban and rural population of specific country*/}
+<Auto callback={this.setCountryName}></Auto>
+
+<Grap countryName={this.state.countryName}></Grap>
+
+
+{/*This shows when click in the country bubble to show the population of that country*/}
+
 {this.state.open &&(<div  className="modal" id="exampleModal" tabIndex="-1" style={{position:'fixed',display:'block',
 
 ZIndex:99999,top:'100px'}}>

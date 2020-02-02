@@ -31,11 +31,6 @@ app.prepare().then(async()=>{
 	server.use(express.static(path.resolve(__dirname,"files")));
 	
 
-	console.log(server.use("/files",express.static(path.resolve(__dirname,"files"))));
-
-	console.log(__dirname);
-	console.log(path.resolve(__dirname,"file"));
-
 
 
 	server.get('/',async(req,res)=>{
@@ -43,7 +38,16 @@ app.prepare().then(async()=>{
 		app.render(req,res,'/')
 	})
 
-	server.get("/test",(req,res)=>{
+	server.get("/worldpopulation",(req,res)=>{
+	const datas=Lib.displayData_worldPopulation();
+	res.json(datas)
+})
+
+
+
+	// get countries name;
+
+	server.get("/countryNames",(req,res)=>{
 
 		/*
 
@@ -56,9 +60,11 @@ fs.readFile("world-population-by-world-regions-post-1820.csv","utf-8",(err,data)
 });
 	*/
 
-	console.log(Lib.countries_PopulationBy_Year('2019'))
+	//console.log(Lib.countries_PopulationBy_Year('2019'))
 
-		res.json({name:"jsons"})
+	var countries=Lib.getCountries_urban_rural();
+
+		res.json(countries)
 	})
 
 
@@ -83,7 +89,9 @@ server.get('/:year',async(req,res)=>{
 
 
 	
-})
+});
+
+
 
 
 
@@ -92,13 +100,71 @@ server.get('/:year',async(req,res)=>{
 
 
 server.get("/country/:name",(req,res)=>{
-console.log("requesed ..");
-console.log(req.params)
+
 // working
 
 var country=Lib.country_pop(req.params.name)
 	res.json(country)
 })
+
+
+
+
+// for urban and rural
+
+server.get("/countryUrbanandRural/:name",(req,res)=>{
+	var country=Lib.countryName(req.params.name);
+
+
+	res.json(country);
+})
+
+
+// get the country name from the "urban-vs-rural-majority.csv" file
+//the reason we choose this file to get country name is .. we are graphing base on this file
+	server.get("/fuck",(req,res)=>{
+
+		/*
+
+fs.readFile("world-population-by-world-regions-post-1820.csv","utf-8",(err,data)=>{
+	if(err){
+		console.log(err.message)
+	}
+
+	console.log(data)
+});
+	*/
+
+	//console.log(Lib.countries_PopulationBy_Year('2019'))
+
+		res.json({name:"fsdfsf"})
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

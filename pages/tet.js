@@ -18,7 +18,7 @@ export default class LineGraph extends Component {
 
         // country from props
 
-        console.log(this.props)
+      
 
         var datas;
 
@@ -28,23 +28,31 @@ export default class LineGraph extends Component {
  datas=await response.json();
 
 console.log(datas)
-
 }catch(err){
     alert(err);
 }
 
 
 
-//
+// we only choose some years [with defference of 4 years]
 
 
 const Label=['1909','1919','1929','1939','1949','1959','1969','1979','1989','1999','2009','2019'];
 
+// here we return array of population on repective sequences.
+
+
 var Data=Label.map(e=>{
+
+    // dats is the reponse from the sever.
+
+    // loop over the all the datas and return for specific year;
     var x=datas.data.find(d=> d.Year===e);
 
+
+// get only poppulation from data; [destructuring prop]
     var {Population}=x;
-    return Number(Population);
+    return Number(Population);// convert into number;
 })
 
 console.log(Data)
@@ -58,14 +66,8 @@ this.chart= new Chart(myChartRef, {
         datasets: [{
             label: 'population',
             data: Data,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
+            fill:false,
+           
             borderColor: [
                 'rgba(255, 99, 132, 1)',
                 'rgba(54, 162, 235, 1)',
@@ -74,7 +76,7 @@ this.chart= new Chart(myChartRef, {
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderWidth: 1
+            borderWidth: 3
         }]
     },
     options: {

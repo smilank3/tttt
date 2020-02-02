@@ -1,0 +1,375 @@
+import React, { Component } from 'react'
+import Chart from "chart.js";
+import 'isomorphic-unfetch'
+
+ const port=process.env.PORT|| 3000;
+
+const ROOT_URL=process.env.ROOT_URL || `http://localhost:${port}`;
+
+
+
+/// this is where the graph exist
+
+
+class GrapChild extends Component{
+
+    render(){
+        <
+    }
+}
+
+export default class Grap extends Component {
+    chartRef = React.createRef();
+
+    state={Label:['1960','1970','1980','1990','2000','2010','2010','2017','2020','2030','2040'],Datas:null}
+
+
+    // function that fetches the data of given country
+
+    fetchAndGetData=async()=>{
+
+const myChartRef = this.chartRef.current.getContext("2d");
+
+ var datas;
+
+
+
+// Fetch the data of specific country;
+
+
+       try{
+    var response=await fetch(`${ROOT_URL}/countryUrbanandRural/${this.props.countryName}`,{method:'GET',credentials:'include'},{'Content-type':'application/json; charset=UTF-8'});
+ datas=await response.json();
+
+console.log(datas)
+
+}catch(err){
+    alert(err);
+
+}
+
+
+
+
+// we only choose some years [with defference of 4 years]
+
+
+const Label=['1960','1970','1980','1990','2000','2010','2010','2017','2020','2030','2040'];
+
+
+
+//now;
+// now we filer the urban(%) and Rural(%) from the data of respective year.
+
+
+// create array to hold the data;
+var urban=[];
+var rural=[];
+
+
+Label.map(year=>{
+    var d=datas.find(d=>d.Year==year);
+
+    // push to urban array a urban data
+
+    
+
+    urban.push(Number(d['Urban (%)']));
+// similar to rural
+    rural.push(Number(d['Rural (%)']));
+})
+
+
+console.log(urban);
+console.log(rural)
+
+
+        
+this.chart= new Chart(myChartRef, {
+    type: 'line',
+    data: {
+        labels: Label,
+        datasets: [{
+            label: 'Urban',
+            data: urban,
+            fill:false,
+           
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 3
+        },
+
+        {
+            label: 'Rural',
+            data: rural,
+            fill:false,
+           borderColor: "#3e95cd",
+            borderWidth: 3
+        }
+
+       
+
+       
+        ]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+    }
+
+    
+componentDidMount=async()=> {
+       const myChartRef = this.chartRef.current.getContext("2d");
+
+ var datas;
+
+
+
+// Fetch the data of specific country;
+
+
+       try{
+    var response=await fetch(`${ROOT_URL}/countryUrbanandRural/${this.props.countryName}`,{method:'GET',credentials:'include'},{'Content-type':'application/json; charset=UTF-8'});
+ datas=await response.json();
+
+console.log(datas)
+
+}catch(err){
+    alert(err);
+
+}
+
+
+// set datas
+
+this.setState({Datas:datas})
+
+
+// render the graph
+
+
+
+
+    }
+
+
+
+    componentWillUnMount(){
+
+        this.chart.destroy();
+
+    }
+    render() {
+        return (
+            <div >
+
+            <h2>{this.props.countryName}</h2>
+                <canvas
+                    id="myChart"
+                    ref={this.chartRef}
+                />
+            </div>
+        )
+    }
+}
+
+
+
+import React, { Component } from 'react'
+import Chart from "chart.js";
+import 'isomorphic-unfetch'
+
+ const port=process.env.PORT|| 3000;
+
+const ROOT_URL=process.env.ROOT_URL || `http://localhost:${port}`;
+
+
+
+/// this is where the graph exist
+
+
+class GrapChild extends Component{
+     chartRef = React.createRef();
+
+    // when componentDid mount use datas in props to draw
+
+  async componentDidMount(){
+
+    // create char reference
+const myChartRef = this.chartRef.current.getContext("2d");
+
+
+// the timeline we are using
+const Label=['1960','1970','1980','1990','2000','2010','2010','2017','2020','2030','2040'];
+
+
+const datas=this.props.datas;
+
+
+//now;
+// now we filer the urban(%) and Rural(%) from the data of respective year.
+
+
+// create array to hold the data;
+var urban=[];
+var rural=[];
+
+console.log(datas)
+
+
+Label.map(year=>{
+    var d=datas.find(d=>d.Year==year);
+
+    // push to urban array a urban data
+
+    
+
+    urban.push(Number(d['Urban (%)']));
+// similar to rural
+    rural.push(Number(d['Rural (%)']));
+})
+
+
+console.log(urban);
+console.log(rural)
+
+
+        
+this.chart= new Chart(myChartRef, {
+    type: 'line',
+    data: {
+        labels: Label,
+        datasets: [{
+            label: 'Urban',
+            data: urban,
+            fill:false,
+           
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 3
+        },
+
+        {
+            label: 'Rural',
+            data: rural,
+            fill:false,
+           borderColor: "#3e95cd",
+            borderWidth: 3
+        }
+
+       
+
+       
+        ]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+
+    }
+
+     
+    render(){
+         return (
+            <div >
+
+            <h2>{this.props.countryName}</h2>
+                <canvas
+                    id="myChart"
+                    ref={this.chartRef}
+                />
+            </div>
+        )
+    }
+}
+
+export default class Grap extends Component {
+   
+
+    state={Datas:null}
+
+
+   
+async componentDidMount(){
+
+    console.log("componentDidMount is called........................................")
+       
+ var datas;
+
+
+
+// Fetch the data of specific country;
+
+
+       try{
+    var response=await fetch(`${ROOT_URL}/countryUrbanandRural/${this.props.countryName}`,{method:'GET',credentials:'include'},{'Content-type':'application/json; charset=UTF-8'});
+ datas=await response.json();
+
+console.log(datas)
+
+}catch(err){
+    alert(err);
+
+}
+
+
+// set datas
+
+this.setState({Datas:datas})
+
+
+// render the graph
+
+
+
+
+    }
+
+
+componentWillUnMount(){
+
+        this.chart.destroy();
+
+    }
+
+
+
+   
+    render() {
+
+        console.log(this.state.Datas)
+
+
+        return (
+          <GrapChild  countryName={this.props.countryName} datas={this.state.Datas}></GrapChild>
+        )
+    }
+}
